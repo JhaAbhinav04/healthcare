@@ -1,0 +1,37 @@
+<div class="container">
+  <h2>View Appointments</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>S.no</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Complete Address</th>
+        <th>Trainer Preference</th>
+        <th>Physio Required</th>
+        <th>Package</th>
+        <th>Total Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appointment of appointments">
+        <td>{{ appointment.sNo }}</td>
+        <td>{{ appointment.name }}</td>
+        <td>{{ appointment.phone }}</td>
+        <td>{{ appointment.email }}</td>
+        <td>{{ appointment.age }}</td>
+        <td>{{ appointment.completeAddress }}</td>
+        <td>{{ appointment.trainerPreference }}</td>
+        <td>{{ appointment.physioRequired }}</td>
+        <td>{{ appointment.package }}</td>
+        <td>{{ appointment.totalAmount }}</td>
+      </tr>
+      <!-- Handle case where no appointments are available -->
+      <tr *ngIf="appointments.length === 0">
+        <td colspan="10" class="text-center">No appointments available</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
