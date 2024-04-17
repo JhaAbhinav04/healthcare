@@ -1,0 +1,54 @@
+/* footer.component.css */
+
+/* Style for the footer container */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex; /* Use flexbox */
+  justify-content: space-between; /* Align items evenly */
+  flex-wrap: wrap; /* Allow items to wrap if needed */
+}
+
+/* Style for each section of the footer */
+.footer-section {
+  width: 45%; /* Adjust width as needed */
+}
+
+/* Style for the heading of each section */
+.footer-section h4 {
+  color: #fff;
+  font-size: 18px;
+}
+
+/* Style for the list items in the Useful Links section */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Style for the Contact information section */
+.footer-section p {
+  margin: 5px 0;
+}
+
+/* Style for the copyright line */
+.footer-copyright {
+  width: 100%; /* Take full width */
+  text-align: center;
+  color: #ccc;
+  margin-top: 20px;
+}

@@ -9,6 +9,9 @@ import { PlaceAppointmentsComponent } from './place-appointments/place-appointme
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +19,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     ViewAppointmentsComponent,
     PlaceAppointmentsComponent,
+    ContactUsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent],

@@ -1,6 +1,14 @@
 /* Apply some padding to the container */
 .form-container {
   padding: 20px;
+  max-width: 1000px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+  justify-content: space-between;
 }
 
 /* Style form labels */
@@ -22,6 +30,10 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  max-width: 600px;
+}
+.addrline {
+  width: 500px;
 }
 
 /* Style radio button labels */

@@ -5,28 +5,30 @@
       <tr>
         <th>S.no</th>
         <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
         <th>Age</th>
+        <th>Email</th>
+        <th>Phone</th>
         <th>Complete Address</th>
         <th>Trainer Preference</th>
-        <th>Physio Required</th>
+        <th>Physiotherapist Required</th>
         <th>Package</th>
         <th>Total Amount</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let appointment of appointments">
-        <td>{{ appointment.sNo }}</td>
-        <td>{{ appointment.name }}</td>
-        <td>{{ appointment.phone }}</td>
-        <td>{{ appointment.email }}</td>
-        <td>{{ appointment.age }}</td>
-        <td>{{ appointment.completeAddress }}</td>
-        <td>{{ appointment.trainerPreference }}</td>
-        <td>{{ appointment.physioRequired }}</td>
-        <td>{{ appointment.package }}</td>
-        <td>{{ appointment.totalAmount }}</td>
+      <tr *ngFor="let i of appointments">
+        <td>{{ i.id }}</td>
+        <td>{{ i.firstname }}</td>
+        <td>{{ i.age }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.phonenumber }}</td>
+        <td>
+          {{ i.streetaddress + i.city + i.state + i.country + i.pincode }}
+        </td>
+        <td>{{ i.trainerpreference }}</td>
+        <td>{{ i.physiotherapist }}</td>
+        <td>{{ i.package }}</td>
+        <td>{{ i.amount }}</td>
       </tr>
       <!-- Handle case where no appointments are available -->
       <tr *ngIf="appointments.length === 0">

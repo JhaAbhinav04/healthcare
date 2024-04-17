@@ -3,28 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../user.service';
 
-export class Fitness {
-  constructor(
-    public inr: number,
-    public paisa: number,
-    public streetaddress: string,
-    public city: string,
-    public state: string,
-    public country: string,
-    public pincode: number,
-    public phonenumber: number,
-    public email: string,
-    public firstname: string,
-    public lastname: string,
-    public age: number,
-    public trainerpreference: string,
-    public physiotherapist: string,
-    public packages: string,
-    public weeks?: number,
-    public amount?: number
-  ) {}
-}
-
 @Component({
   selector: 'app-place-appointments',
   templateUrl: './place-appointments.component.html',
@@ -39,63 +17,58 @@ export class PlaceAppointmentsComponent implements OnInit {
 
   ngOnInit() {
     this.fitnessForm = this.formBuilder.group({
-      inr: [null],
-      paisa: [null],
-      streetaddress: [null, Validators.required],
-      city: [null, Validators.required],
-      state: [null, Validators.required],
-      country: [null, Validators.required],
-      pincode: [null, Validators.required],
-      phonenumber: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]],
-      firstname: [null, Validators.required],
-      lastname: [null, Validators.required],
-      age: [null, Validators.required],
-      trainerpreference: [null, Validators.required],
-      physiotherapist: [null, Validators.required],
-      packages: [null, Validators.required],
-      weeks: [{ value: 2, disabled: true }], // Default value for weeks, disabled
+      firstname: ['', Validators.required],
+      age: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phonenumber: ['', Validators.required],
+      streetaddress: ['', Validators.required],
+      addressline2: [''],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      country: ['', Validators.required],
+      pincode: ['', Validators.required],
+      trainerpreference: ['', Validators.required],
+      physiotherapist: ['', Validators.required],
+      package: ['', Validators.required],
+      weeks: [{ value: 2, disabled: true }],
+      amount: [{ value: this.amount, disabled: true }],
+    });
+
+    this.fitnessForm.get('package')?.valueChanges.subscribe((value) => {
+      if (value === '4Ses' || value === '5Ses') {
+        this.showWeeks = true;
+        this.fitnessForm.get('weeks')?.enable();
+        this.amount = value === '5Ses' ? 3000 : 3200;
+        if (this.fitnessForm.get('physiotherapist')?.value === 'y') {
+          this.amount += 200;
+        }
+        this.fitnessForm.get('amount')?.setValue(this.amount);
+      } else {
+        this.showWeeks = false;
+        this.fitnessForm.get('weeks')?.disable();
+        this.amount = 500;
+        this.fitnessForm.get('amount')?.setValue(this.amount);
+      }
     });
   }
 
   onSubmit() {
     if (this.fitnessForm.valid) {
       const formData = this.fitnessForm.value;
-      const fitnessData = new Fitness(
-        formData.inr,
-        formData.paisa,
-        formData.streetaddress,
-        formData.city,
-        formData.state,
-        formData.country,
-        formData.pincode,
-        formData.phonenumber,
-        formData.email,
-        formData.firstname,
-        formData.lastname,
-        formData.age,
-        formData.trainerpreference,
-        formData.physiotherapist,
-        formData.packages,
-        formData.weeks
-      );
-
-      // Send the form data to the backend server
+      formData.amount = this.amount;
+      console.log('Form data:', formData);
       this.http
-        .post<any>('http://localhost:8000/appointments', fitnessData)
+        .post<any>('http://localhost:8000/appointments', formData)
         .subscribe(
           (response) => {
-            console.log('Data sent successfully:', response);
-            // Handle success, e.g., display a success message
+            console.log('Successfully submitted:', response);
           },
           (error) => {
-            console.error('Error occurred while sending data:', error);
-            // Handle error, e.g., display an error message
+            console.error('Error submitting:', error);
           }
         );
     } else {
-      // Handle invalid form submission, e.g., display validation errors
-      // console.error('Invalid form submission:', this.fitnessForm.errors);
+      console.log('Form is invalid');
     }
   }
 }

@@ -62,3 +62,41 @@ export class ViewAppointmentsComponent implements OnInit {
     this.appointments = this.appointmentService.getAppointments();
   }
 }
+
+{
+      "id": 10,
+      "firstname": "Amanda",
+      "lastname": "Lopez",
+      "age": 26,
+      "phonenumber": "2223334444",
+      "email": "amanda@example.com",
+      "streetaddress": "876 Oak St",
+      "city": "Orlando",
+      "state": "FL",
+      "country": "USA",
+      "pincode": "32801",
+      "trainerpreference": "Female",
+      "physiotherapist": "Yes",
+      "package": "4Ses",
+      "weeks": 2,
+      "amount": 3000
+    }
+
+        {
+      "firstname": "ABC",
+      "age": 44,
+      "email": "abc@def.com",
+      "phonenumber": "9977884561",
+      "streetaddress": "qwett",
+      "addressline2": "qwe",
+      "city": "wer",
+      "state": "wwg",
+      "country": "sst",
+      "pincode": "884453",
+      "trainerpreference": "Male",
+      "physiotherapist": "No",
+      "package": "5Ses",
+      "weeks": 2,
+      "amount": 3200,
+      "id": 11
+    }
